@@ -1,8 +1,8 @@
-import network
-import machine
+import network # type: ignore
+import machine # type: ignore
 import config
 from time import sleep
-from machine import Pin
+from machine import Pin # type: ignore
 import socket
 import os
 
