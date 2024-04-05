@@ -1,4 +1,4 @@
-# SolarFlarePy - 🔆 Light Therapy Lamp 🔆
+# 🔆SolarFlarePy - Light Therapy Lamp
 
 ## Overview
 This project is a MicroPython-based light therapy lamp designed to mimic natural sunlight, helping to improve mood, sleep patterns, and overall mental health. Utilizing LEDs that can adjust in color temperature and brightness, this lamp simulates different times of the day, from the soft glow of sunrise to the bright light of noon. Ideal for individuals suffering from Seasonal Affective Disorder (SAD) or anyone looking to regulate their circadian rhythms, this lamp is a portable, energy-efficient solution to light therapy.
