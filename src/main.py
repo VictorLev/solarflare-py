@@ -21,6 +21,7 @@ while True:
     request = str(request)
 
     # Check the path in the request and toggle the LED accordingly
+    print(request)
     led_on = request.find('/?led=on')
     led_off = request.find('/?led=off')
 

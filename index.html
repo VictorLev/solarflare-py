@@ -6,10 +6,11 @@
       <style>
         @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
         body {
-          background: linear-gradient(to bottom, #F4EBD0, #D6AD60);
-          height: 100vh;
           font-family: 'Work Sans', sans-serif;
           color: #122620;
+        }
+        .bg-gold {
+          background: linear-gradient(to bottom, #F4EBD0, #D6AD60);
         }
         h1, h2, h3, h4, h5, h6{
           font-family: 'Nunito', sans-serif;
@@ -23,44 +24,87 @@
       -->
     </head>
     <body>
-      <div class="py-4">
-        <div class="md:container mx-auto px-4">
-            <div class="rounded-lg p-4 bg-white">
-              <h1 class="text-7xl lg:text-5xl text-center">SolarFlare settings</h1>
-              <div>
-                <h3 class="text-5xl lg:text-3xl mt-4">Device Information</h3>
-                <hr/>
-                <!-- General Information -->
-                <div class="my-2">
-                  <h5 class="text-5xl lg:text-xl">General Information</h5>
-                  <div class="grid grid-cols-1 lg:grid-cols-3 my-2">
-                    <div class="text-4xl lg:text-base">Device Temp: DEVICE_TEMP</div>
-                    <div class="text-4xl lg:text-base">Free Memory: DEVICE_MEM</div>
-                    <!--
-                      <div class="col">Current: intensity (%): </div>
-                      <div class="col">Next sleep time: </div>
-                    -->
-                  </div>
-                </div>
-                <!-- Networking Information -->
-                <div class="my-2">
-                  <h5 class="text-5xl lg:text-xl">Networking</h5>
-                  <div class="grid grid-cols-1 lg:grid-cols-3 my-2">
-                    <div class="text-4xl lg:text-base">Device IP: DEVICE_IP</div>
-                    <div class="text-4xl lg:text-base">Device Mask: DEVICE_MASK</div>
-                    <div class="text-4xl lg:text-base">Gateway: GATEWAY_IP</div>
-                  </div>
-
-                </div>
-              </div>
-              <div class="flex justify-center">
-                <div><a href="/?led=on" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Turn On</a></div>
-                <div><a href="/?led=off" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Turn Off</a></div>
-              </div>
-              <div>
-                <p>LED Status: <span id="led-status">LED_STATE</span></p>
+      <div class="py-4 bg-gold px-8">
+        <div class="rounded-lg p-4 bg-white shadow">
+          <div class="text-7xl lg:text-5xl text-center p-4">SolarFlare settings</div>
+          <!-- Device Information -->
+          <div>
+            <h3 class="text-5xl lg:text-3xl mt-4 bg-[#122620] rounded-md text-white p-4">Device Information</h3>
+            <!-- General Information -->
+            <div class="m-4">
+              <h5 class="text-5xl lg:text-xl my-4 border-b-4">General Information</h5>
+              <div class="grid grid-cols-1 lg:grid-cols-3 my-2">
+                <div class="text-5xl lg:text-base">Device Temp: DEVICE_TEMP</div>
+                <div class="text-5xl lg:text-base">Free Memory: DEVICE_MEM</div>
+                <!--
+                  <div class="col">Current: intensity (%): </div>
+                  <div class="col">Next sleep time: </div>
+                -->
               </div>
             </div>
+            <!-- Networking Information -->
+            <div class="m-4">
+              <h5 class="text-5xl lg:text-xl my-4 border-b-4">Networking</h5>
+              <div class="grid grid-cols-1 lg:grid-cols-3 my-2">
+                <div class="text-5xl lg:text-base">Device IP: DEVICE_IP</div>
+                <div class="text-5xl lg:text-base">Device Mask: DEVICE_MASK</div>
+                <div class="text-5xl lg:text-base">Gateway: GATEWAY_IP</div>
+              </div>
+
+            </div>
+          </div>
+          <!-- Setttings -->
+          <div>
+            <h3 class="text-5xl lg:text-3xl mt-4 bg-[#122620] rounded-md text-white p-4">Settings</h3>
+            <div class="px-4">
+              <form action="/submit-your-form-endpoint" method="POST" class="space-y-4">
+                <div>
+                    <label for="timezone" class="block text-5xl lg:text-base font-medium text-gray-700">Set timezone</label>
+                    <input type="text" id="timezone" name="timezone" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                </div>
+                <div>
+                    <label class="inline-flex items-center">
+                        <input type="checkbox" name="turn_off_light" class="rounded border-gray-300 text-indigo-600 shadow-sm">
+                        <span class="ml-2 text-5xl lg:text-base text-gray-700">Turn off the light</span>
+                    </label>
+                </div>
+                <div>
+                    <label for="start_time" class="block text-5xl lg:text-base font-medium text-gray-700">Set when it starts</label>
+                    <input type="time" id="start_time" name="start_time" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                </div>
+                <div>
+                    <label for="duration" class="block text-5xl lg:text-base font-medium text-gray-700">Set how long it lasts (in hours)</label>
+                    <input type="number" id="duration" name="duration" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                </div>
+                <div>
+                    <label for="start_intensity" class="block text-5xl lg:text-base font-medium text-gray-700">Set the start intensity (%)</label>
+                    <input type="number" id="start_intensity" name="start_intensity" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                </div>
+                <div>
+                    <label for="end_intensity" class="block text-5xl lg:text-base font-medium text-gray-700">Set the end intensity (%)</label>
+                    <input type="number" id="end_intensity" name="end_intensity" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                </div>
+                <div>
+                    <label for="function" class="block text-5xl lg:text-base font-medium text-gray-700">Set the function it will start</label>
+                    <select id="function" name="function" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                        <option value="linear">Linear</option>
+                        <option value="quadratic">Quadratic</option>
+                    </select>
+                </div>
+                <div class="text-right">
+                    <button type="submit" class="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-700">Save</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="flex justify-center">
+            <div><a href="/?led=on" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Turn On</a></div>
+            <div><a href="/?led=off" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Turn Off</a></div>
+          </div>
+          <div>
+            <p>LED Status: <span id="led-status">LED_STATE</span></p>
+          </div>
         </div>
       </div>
     </body>
